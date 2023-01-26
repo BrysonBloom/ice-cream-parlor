@@ -71,28 +71,63 @@ function drawToppings() {
     toppings.forEach(tops => {
         let topElem = document.getElementById(`creamTop`)
         template +=
-            `<div onclick="addToppingToCart('${tops.name}')" class="card m-3 p-2" style="height: 16rem;">
-            <img src="${tops.image}" alt="">
-            <div class="card-body">${tops.name}</div>
-        </div>`
+            `<div onclick="addToppingToCart('${tops.name}')" class="card m-3 img-fluid card-img-top" style="height: 26vh;">
+                <img  src="${tops.image}" alt="">
+                <div class="card-body">${tops.name}</div>
+            </div>`
         topElem.innerHTML = template
     })
 }
 
+
 function addToContainerCart(name) {
     let Cone = containers.find(cone => cone.name == name)
-    console.log(Cone.name)
+    // console.log(Cone.name)
+    let inCart = containersCart.find(cone => cone.name == name)
 
+    if (inCart) {
+        window.alert('Item is already in cart')
+    } else {
+        containersCart.push({
+            name: Cone.name,
+            image: Cone.image,
+            price: Cone.price
+        })
+
+    }
+    // console.log(containersCart)
 }
 function addIceCreamToCart(name) {
     let Cream = iceCream.find(cone => cone.name == name)
-    console.log(Cream.name)
+    // console.log(Cream.name)
+    let inCart = iceCreamCart.find(cone => cone.name == name)
 
+    if (inCart) {
+        window.alert('Item is already in cart')
+    } else {
+        iceCreamCart.push({
+            name: Cream.name,
+            image: Cream.image,
+            price: Cream.price
+        })
+    }
+    // console.log(iceCreamCart);
 }
 function addToppingToCart(name) {
     let tops = toppings.find(cone => cone.name == name)
-    console.log(tops.name)
+    // console.log(tops.name)
+    let inCart = toppingsCart.find(cone => cone.name == name)
 
+    if (inCart) {
+        window.alert('Item is already in cart')
+    } else {
+        toppingsCart.push({
+            name: tops.name,
+            image: tops.image,
+            price: tops.price
+        })
+    }
+    // console.log(toppingsCart);
 }
 drawCone()
 drawCream()
