@@ -79,6 +79,51 @@ function drawToppings() {
     })
 }
 
+function drawCart() {
+    drawConeCart()
+    drawCreamCart()
+    drawTopsCart()
+}
+//TODO - make removeFromCart
+function drawConeCart() {
+    template = ``
+    containersCart.forEach(cone => {
+        let coneElem = document.getElementById(`coneCart`)
+        template +=
+            `<div onclick="removeContainerFromCart('${cone.name}')" class="card m-3 p-2" style="height: 16rem;">
+            <img src="${cone.image}" alt="">
+            <div class="card-body">${cone.name}</div>
+        </div>`
+        coneElem.innerHTML = template
+
+    })
+}
+function drawCreamCart() {
+    template = ``
+    iceCreamCart.forEach(cone => {
+        let coneElem = document.getElementById(`creamCart`)
+        template +=
+            `<div onclick="removeFromCart('${cone.name}')" class="card m-3 p-2" style="height: 16rem;">
+            <img src="${cone.image}" alt="">
+            <div class="card-body">${cone.name}</div>
+        </div>`
+        coneElem.innerHTML = template
+
+    })
+}
+function drawTopsCart() {
+    template = ``
+    toppingsCart.forEach(cone => {
+        let coneElem = document.getElementById(`topsCart`)
+        template +=
+            `<div onclick="removeContainerFromCart('${cone.name}')" class="card m-3 p-2" style="height: 16rem;">
+            <img src="${cone.image}" alt="">
+            <div class="card-body">${cone.name}</div>
+        </div>`
+        coneElem.innerHTML = template
+
+    })
+}
 
 function addToContainerCart(name) {
     let Cone = containers.find(cone => cone.name == name)
@@ -95,6 +140,7 @@ function addToContainerCart(name) {
         })
 
     }
+    drawCart()
     // console.log(containersCart)
 }
 function addIceCreamToCart(name) {
@@ -111,6 +157,7 @@ function addIceCreamToCart(name) {
             price: Cream.price
         })
     }
+    drawCart()
     // console.log(iceCreamCart);
 }
 function addToppingToCart(name) {
@@ -127,6 +174,7 @@ function addToppingToCart(name) {
             price: tops.price
         })
     }
+    drawCart()
     // console.log(toppingsCart);
 }
 drawCone()
