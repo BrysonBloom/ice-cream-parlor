@@ -83,6 +83,8 @@ function drawCart() {
     drawConeCart()
     drawCreamCart()
     drawTopsCart()
+    getTotal()
+    drawFooter()
 }
 //TODO - make removeFromCart
 function drawConeCart() {
@@ -177,6 +179,33 @@ function addToppingToCart(name) {
     drawCart()
     // console.log(toppingsCart);
 }
+function drawFooter() {
+    let footElem = document.getElementById('footer')
+    footElem.innerText = `$${getTotal(total)}`
+}
+let total = 0
+function getTotal(num) {
+    let coneTotal = 0
+    let creamTotal = 0
+    let topsTotal = 0
+    containersCart.forEach(price => {
+
+        coneTotal += price.price
+    })
+    iceCreamCart.forEach(price => {
+
+        creamTotal += price.price
+    })
+    toppingsCart.forEach(price => {
+
+        topsTotal += price.price
+    })
+    total = coneTotal + creamTotal + topsTotal
+    console.log(total)
+    return total
+}
+
+
 drawCone()
 drawCream()
 drawToppings()
